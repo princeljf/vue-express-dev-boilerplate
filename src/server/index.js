@@ -2,7 +2,6 @@ import express from 'express'
 import path from 'path'
 import favicon from 'serve-favicon'
 import logger from 'morgan'
-import cookieParser from 'cookie-parser'
 import bodyParser from 'body-parser'
 import webpack from 'webpack'
 
@@ -17,11 +16,7 @@ import config from '../../build/webpack.dev.conf'
 
 const app = express()
 
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'))
-// app.set('view engine', 'jade')
-
-// 引入history模式让浏览器支持
+// 引入history模式让浏览器进行前端路由页面跳转
 app.use(history())
 
 // uncomment after placing your favicon in /public
@@ -29,11 +24,10 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 const compiler = webpack(config)
-
+//webpack 中间件
 app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath,
   stats: { colors: true }
@@ -54,12 +48,16 @@ app.use(function (req, res, next) {
 })
 
 // error handler
-// will print stacktrace
 app.use(function (err, req, res, next) {
   res.status(err.status || 500)
+  console.log(err)
   res.send(err.message)
 })
 
-app.listen(4000)
+// 设置监听端口
+const SERVER_PORT = 4000
+app.listen(SERVER_PORT, () => {
+  console.info(`服务已经启动，监听端口${SERVER_PORT}`)
+})
 
 export default app

@@ -1,17 +1,22 @@
-Vue + Express 前后端脚手架（基于iViewUI）
+Vue + Express 前后端脚手架
 =========================================
 
 在原版本基础之上，修改了webpack的相关配置文件。使得项目可以运行build命令，编译vue相关代码。
-前端部分增加了vue全家桶（vue-router，vuex）以及iView的关联
-后端express部分增加有history模式
+前端部分增加了vue全家桶（vue-router，vuex）
+后端express部分增加有history模式，支持前端路由。需要传统后端路由方式的话，请注释掉`server/index.js`中`app.use(history())`
 重新修改了文件夹结构
+
+#### 1.10 版本
+- 去掉了相关UI组件的配置，如果需要进行配置的话可以参考官方资料
+  - [iView](https://www.iviewui.com/)
+  - [element-UI](http://element-cn.eleme.io/#/zh-CN)
+- 删除了不需要的package
 
 fork源：[southerncross/vue-express-dev-boilerplate](https://github.com/southerncross/vue-express-dev-boilerplate)
 
 ## 关键词
 
 - Vue (vue-router + vuex)
-- iView
 - Express
 - Nodemon
 - Webpack
@@ -69,7 +74,7 @@ fork源：[southerncross/vue-express-dev-boilerplate](https://github.com/souther
 
 2. 运行开发环境
 
-   `npm run dev`
+   `npm run dev 或者 npm start` 
 
 3. build前端代码
 
