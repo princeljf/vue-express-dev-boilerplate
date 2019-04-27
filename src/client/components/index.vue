@@ -14,6 +14,11 @@ export default {
       // its initial state.
       msg: 'Hello World!'
     }
-  }
+  },
+  methods: {
+    // async getTushareApi(){
+    //   let data = await 
+    // }
+  },
 }
 </script>
